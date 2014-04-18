@@ -1,0 +1,16 @@
+6
+XueYiShiTang
+CanYinZhongXin
+XueWuShiTang
+XueYiXiaoBaiFang
+BaiNianJiangTang
+GongHangQuKuanJi
+6
+XueYiShiTang CanYinZhongXin 80
+XueWuShiTang CanYinZhongXin 40
+XueYiShiTang XueYiXiaoBaiFang 35
+XueYiXiaoBaiFang XueWuShiTang 85
+CanYinZhongXin GongHangQuKuanJi 60
+GongHangQuKuanJi BaiNianJiangTang 35
+1
+XueYiXiaoBaiFang BaiNianJiangTang
