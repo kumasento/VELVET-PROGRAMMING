@@ -1,2 +1,0 @@
-#lang planet neil/sicp
-
