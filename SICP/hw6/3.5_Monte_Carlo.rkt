@@ -1,8 +1,13 @@
 #lang planet neil/sicp
 
+(define (random-real)
+  (let ((rand-max 4294967087)) ; see document of Racket
+    (/ (random rand-max)
+       (exact->inexact rand-max))))
+
 (define (random-in-range low high)
   (let ((range (- high low)))
-    (+ low (random range))))
+    (+ low (* range (random-real)))))
 
 (define (Pxy x1 x2 y1 y2)
       (lambda () 
