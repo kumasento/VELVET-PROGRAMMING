@@ -9,45 +9,53 @@
 using namespace std;
 
 string high_precise_subtraction(string n1, string n2){
-	// n1 is longer than n2
-	int l1 = n1.length(), l2 = n2.length();
-	int idx = 0;
-	int g = 0;
-	string str;
-	while(g || idx < l1 || idx < l2){
-		int p1, p2; p1 = p2 = 0;
-		if(idx < l1) p1 = n1[l1-idx-1] - '0';
-		if(idx < l2) p2 = n2[l2-idx-1] - '0';
-		int ans = p1 - p2 - g;
-		g = 0;
-		if(idx >= l1 && idx >= l2){
-			str.push_back('-');
-		}
-		else{
-			while(ans < 0) { ans += 10; g ++; }
-			int digit = ans % 10;
-			idx ++;
-			str.push_back(digit + '0');	
-		}	
-		cout << str << endl;
-	}
-
-	reverse(str.begin(), str.end());
-	int start = 0;
-	for(int i = 0; i < idx; i++){
-		if(str[i] == '0') { start ++; }
-		else break;
-	}
-
-	str = str.substr(start, str.length()-start);
-	return str;
+	/*
+	 *	Here are some rules:
+	 *	1. need to set the big one in n1 and small one in n2
+	 *	2. when the digit of n1 is smaller than the digit in n2, add n1 10 and 
+	 *	substract 1 from n1 + 1
+	 */
+	 string str; int l = n1.length();
+	 int idx = 0, g = 0;
+	 while(g || idx < l){
+	 	int p1 = n1[idx]-'0';
+	 	int p2 = n2[idx]-'0';
+	 	//cout << p1 << ' ' << p2 << endl;
+	 	int ans = p1 - p2;
+	 	if(ans < 0) { ans += 10; n1[idx+1] --; }
+	 	str.push_back(ans % 10 + '0');
+	 	g = ans / 10;
+	 	//cout << str[idx] << endl;
+	 	idx ++;
+	 }
+	 reverse(str.begin(), str.end());
+	 int start = 0;
+	 for(int i = 0; i < str.length(); i++){
+	 	if(str[i] == '0') start++;
+	 	else break;
+	 }
+	 str = str.substr(start, str.length()-start);
+	 return str;
 }
 
 int main(){
 	freopen("3115.in", "r", stdin);
 	string n1, n2; cin>>n1>>n2;
-	if(n1.length() < n2.length())
-		swap(n1, n2);
-	cout << high_precise_subtraction(n1, n2) << endl;
+	int length = max(n1.length(), n2.length());
+	reverse(n1.begin(), n1.end());
+	reverse(n2.begin(), n2.end());
+	while(n1.length() < length) n1.push_back('0');
+	while(n2.length() < length) n2.push_back('0');
+	reverse(n1.begin(), n1.end());
+	reverse(n2.begin(), n2.end());
+
+	int sig = 0;
+	if(n1 < n2) { swap(n1, n2); sig = 1; }
+	reverse(n1.begin(), n1.end());
+	reverse(n2.begin(), n2.end());
+	//cout << n1 << ' ' << n2 << endl;
+	string ans = high_precise_subtraction(n1, n2);
+	if(sig) ans.insert(ans.begin(), '-');
+	cout << ans << endl;
 	return 0;
 }
