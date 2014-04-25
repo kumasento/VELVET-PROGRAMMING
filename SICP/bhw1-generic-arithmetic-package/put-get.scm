@@ -1,3 +1,4 @@
+#lang planet neil/sicp
 ;;; Code for creating the table, you don't need to worry about this.
 
 (define (make-table)
