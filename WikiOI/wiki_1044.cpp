@@ -25,7 +25,6 @@ int main(){
 		int hstart = lower_bound(discrete_height.begin(), discrete_height.end(), height) - 
 					discrete_height.begin();
 		
-
 		for(int hid = hstart; hid < discrete_height.size(); hid++){
 			if(discrete_height[hid] >= height){
 				dp[discrete_height[hid]] ++;
