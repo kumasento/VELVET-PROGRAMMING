@@ -1,4 +1,6 @@
 
+;;; For R5RS
+(define false #f)
 
 ;;; Code for creating the table, you don't need to worry about this.
 

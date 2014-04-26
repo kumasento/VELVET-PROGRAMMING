@@ -89,6 +89,9 @@
 ;;;   RepRat --> Bool
 (define (=zero-rational? x) (=zero-rat? x))
 
+;;;   (RepRat X RepRat) --> bool
+(define (equ-rational? x y) (equ-rat? x y))
+
 ;;;   RepRat --> ({rational} X RepRat)
 (define (make-rational x) (attach-tag 'rational x))
 
@@ -99,10 +102,10 @@
 (put 'sub '(rational rational) -rational)
 (put 'mul '(rational rational) *rational)
 (put 'div '(rational rational) /rational)
+(put 'equ? '(rational rational) equ-rational?)
 
 (put 'negate '(rational) negate-rational)
 (put '=zero? '(rational) =zero-rational?)
-
 
 ;;; Rational Package User Interface
 
@@ -112,7 +115,6 @@
 ;;;    (GN, GN) --> ({rational} X RepRat)
 (define (create-rational x y)
    (make-rational (make-rat x y)))
-
 
 ;;; THE RATIONAL ARITHMETIC PACKAGE.
 
@@ -148,6 +150,10 @@
 (define (=zero-rat? x)
   (=zero? (numer x)))
 
+;;;   RepRat X RepRat --> Bool
+
+(define (equ-rat? x y) 
+  (and (equ? (numer x) (numer y)) (equ? (denom x) (denom y))))
 
 ;;; Procedures for representing rationals
 
@@ -161,6 +167,8 @@
 
 ;;; Coercion procedure from rational/rational method
 ;;; to number/rational method
+(define (repnum->reprat num)
+  (make-rat (create-number num) (create-number 1)))
 
 ;;;  ((RepRat,RepRat) --> T) --> ((RepNum,RepRat) --> T)
 (define (RRmethod->NRmethod method)
@@ -168,8 +176,24 @@
     (method
      (repnum->reprat num)
      rat)))
+(define (RRmethod->RNmethod method)
+  (lambda (rat num)
+    (method
+     rat
+     (repnum->reprat num))))
 
-
+(put 'add '(number rational) (RRmethod->NRmethod +rational))
+(put 'sub '(number rational) (RRmethod->NRmethod -rational))
+(put 'mul '(number rational) (RRmethod->NRmethod *rational))
+(put 'div '(number rational) (RRmethod->NRmethod /rational))
+(put 'equ? '(number rational) (RRmethod->NRmethod equ-rat?))
+
+(put 'add '(rational number) (RRmethod->RNmethod +rational))
+(put 'sub '(rational number) (RRmethod->RNmethod -rational))
+(put 'mul '(rational number) (RRmethod->RNmethod *rational))
+(put 'div '(rational number) (RRmethod->RNmethod /rational))
+(put 'equ? '(rational number) (RRmethod->RNmethod equ-rat?))
+
 ;;; THE GENERIC POLYNOMIAL PACKAGE
 ;;; Methods for polynomials
 
