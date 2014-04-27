@@ -235,9 +235,24 @@
 (define (create-polynomial var coeffs)
   (make-polynomial (make-poly var (dense/coeffs->sparse/terms coeffs))))
 
+(define (create-numeric-polynomial var numeric-coeffs)
+  (make-polynomial (make-poly var (dense/coeffs->sparse/terms 
+                                   (map-coeffs (lambda (x) (create-number x))
+                                               numeric-coeffs)))))
+
+(define (map-coeffs proc L)
+  (define (map-coeffs-iterator proc L coeffs)
+    (if (null? L)
+        coeffs
+        (map-coeffs-iterator proc (cdr L)
+                            (cons (proc (car L))
+                                         coeffs))))
+   (map-coeffs-iterator proc (reverse L) (list)))  
+      
 
 ;;; Makes sparse term representation out of a dense coefficient list
 ;;;     List(GN) --> Repterms
+(define (inc num) (+ num 1))
 (define (dense/coeffs->sparse/terms coeffs)
   (define (dt->st rev-coeffs terms degree)
     (if (null? rev-coeffs)
@@ -340,8 +355,7 @@
         (map-terms-iterator proc (rest-terms L)
                             (adjoin-term (proc (first-term L))
                                          termlist))))
-   (map-terms-iterator proc L (the-empty-termlist)))
-                            
+   (map-terms-iterator proc (reverse L) (the-empty-termlist)))                   
         
     
 

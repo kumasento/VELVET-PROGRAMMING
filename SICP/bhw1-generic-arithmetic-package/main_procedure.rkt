@@ -50,3 +50,34 @@ nrat1
 (define n2 (create-number 2))
 (define r5/13 (create-rational (create-number 5) (create-number 13)))
 (equ? (sub (add n2 r5/13) r5/13) n2)
+
+;Exercise 5.5A
+;Test map-terms
+;; first give the coefficients list
+(define coeffs (list num1 num2 num4))
+coeffs
+;; second build the repterms
+(define L1 (dense/coeffs->sparse/terms coeffs))
+L1 ;(1*X^2 + 2*X^1 + 4*X^0)
+;; third do term operations
+(+terms L1 L1) 
+;; fourth test the *-term-by-all-terms operation
+(define t1 (make-term 2 num2))
+t1 ;; (2 (number . 2)) ==> (2*X^2)
+(*-term-by-all-terms t1 L1)
+(*terms L1 L1) 
+; L1 * L1 = (x^2 + 2*x + 4) * (x^2 + 2*x + 4) 
+;         = (x^4 + 4*x^3 + 12*x^2 + 16*x + 16)
+
+;Exercise 5.5B
+(define numeric-coeffs (list 1 2 4))
+(create-numeric-polynomial 'x numeric-coeffs)
+(create-polynomial 'x coeffs) 
+(define required-numeric-coeffs (list 1 5 0 -2))
+(define p1 (create-numeric-polynomial 'x required-numeric-coeffs))
+
+;Exercise 5.5C
+(define (square polynomial)
+  (mul polynomial polynomial))
+(square p1)
+
