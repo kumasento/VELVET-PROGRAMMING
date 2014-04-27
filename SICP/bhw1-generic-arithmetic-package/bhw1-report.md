@@ -40,9 +40,35 @@
          
              (define r5/13 (create-rational (create-number 5) (create-number 13)))
 
-         
-         
-       
+* ###Polynomials 
+    * **Summary**:
+        * The package has defined the *add*, *mul*, and *=zero?* procedures.
+        * The terms are arranged in high order
+        * The inner data structure is **term list**, cooperated with operations like: *the-empty-termlist* and *adjoin-term* and selectors.
+        * The polynomial here is a cons of one variable and one termlist.
+    * **Research on the Code** and **the Exercises' Answer**:  
+        * >Keep clear of the data types:
+            
+            1. The core data type is **RepPoly** and it's tag is **polynomial**
+            2. **RepPoly = Variable X RepTerms**
+            3. RepTerms could be created by List(GN), for the coefficients here are generic numbers
+        * >dense/coeffs->sparse/terms  
+        
+            This procedure has a inner iteration called **dt->st**, which reverse the coefficients list parameter iterate through it. It checks the value of each coefficient, the one with 0 coefficient will be passed, and the one with non-zero value, the dt->st procedure will create a new term and add it behind the term-list it keep. Once it met the end of the coeff-list's end, it'll return the term list.
+        
+        * >*terms L1 L2
+        
+            This procedure is very complex. First if you do the multiplication among two polynomials, you will use two basic procedure:
+            1. *-term-by-all-terms  
+            2. +terms  
+            
+            And the first procedure is very important, give it the first element in L1 and it will multiply it by all the elements in L2
+        
+        
+        * **5.5A**:  
+            >map-term is a procedure that applies it's procedure parameter to every term in the termlist parameter.  
+            
+                   
        
         
             

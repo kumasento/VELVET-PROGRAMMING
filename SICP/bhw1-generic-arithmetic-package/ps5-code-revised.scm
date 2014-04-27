@@ -332,6 +332,18 @@
 (define (*-term-by-all-terms t1 L)
   (map-terms (lambda (term) (*term t1 term)) L))
 
+;;;   Definition of map-terms
+(define (map-terms proc L) 
+  (define (map-terms-iterator proc L termlist)
+    (if (null? L)
+        termlist
+        (map-terms-iterator proc (rest-terms L)
+                            (adjoin-term (proc (first-term L))
+                                         termlist))))
+   (map-terms-iterator proc L (the-empty-termlist)))
+                            
+        
+    
 
 ;;; Procedures for Representing Term Lists.
 
