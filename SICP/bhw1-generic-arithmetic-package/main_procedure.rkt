@@ -71,13 +71,29 @@ t1 ;; (2 (number . 2)) ==> (2*X^2)
 
 ;Exercise 5.5B
 (define numeric-coeffs (list 1 2 4))
-(create-numeric-polynomial 'x numeric-coeffs)
+(create-numerical-polynomial 'x numeric-coeffs)
 (create-polynomial 'x coeffs) 
 (define required-numeric-coeffs (list 1 5 0 -2))
-(define p1 (create-numeric-polynomial 'x required-numeric-coeffs))
+(define p1 (create-numerical-polynomial 'x required-numeric-coeffs))
 
 ;Exercise 5.5C
 (define (square polynomial)
   (mul polynomial polynomial))
 (square p1)
 
+;Exercise 5.6A
+(define py1 (create-rational (create-numerical-polynomial 'y (list 3))
+                             (create-numerical-polynomial 'y (list 1 0))))
+py1
+(define py2 (create-rational (create-numerical-polynomial 'y (list 2 0 1))
+                             (create-numerical-polynomial 'y (list 1 0))))
+py2
+(define py3 (create-rational (create-numerical-polynomial 'y (list 1))
+                             (create-numerical-polynomial 'y (list 1 -1))))
+py3
+(define py4 (create-rational (create-numerical-polynomial 'y (list 2))
+                             (create-numerical-polynomial 'y (list 1))))
+py4
+(define p3xy (create-polynomial 'x (list py1 (create-number 0) py2 py3 py4)))
+p3xy
+(square p3xy)

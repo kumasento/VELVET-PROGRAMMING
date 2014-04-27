@@ -76,6 +76,11 @@
         * **5.5C**:
             >dont understand the meaning of "pretty-printed"  
         
+        * **5.6A**:
+            >This question focus on the type coercing problem.
+        
+        * **5.6B**:  
+            >Simple
                      
        
         

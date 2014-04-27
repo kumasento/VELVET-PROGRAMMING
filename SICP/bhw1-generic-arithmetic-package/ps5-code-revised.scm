@@ -235,7 +235,7 @@
 (define (create-polynomial var coeffs)
   (make-polynomial (make-poly var (dense/coeffs->sparse/terms coeffs))))
 
-(define (create-numeric-polynomial var numeric-coeffs)
+(define (create-numerical-polynomial var numeric-coeffs)
   (make-polynomial (make-poly var (dense/coeffs->sparse/terms 
                                    (map-coeffs (lambda (x) (create-number x))
                                                numeric-coeffs)))))
@@ -310,7 +310,7 @@
 
 ;;;   (Variable, Variable) --> Bool
 (define (same-variable? v1 v2) (eq? v1 v2))
-
+
 ;;; THE TERM LIST ARITHMETIC PACKAGE.
 
 ;;; procedures for dealing with lists of terms in order of 
@@ -399,7 +399,7 @@
 ;;;   RepTerm --> GN
 (define (coeff term) (cadr term))
 
-                   ;;;   (RepTerm, RepTerm) --> RepTerm
+;;;   (RepTerm, RepTerm) --> RepTerm
 (define (*term t1 t2)
   (make-term
    (+ (order t1) (order t2))
