@@ -81,6 +81,13 @@
         
         * **5.6B**:  
             >Simple
+            
+* ###Completing Polynomial Package
+    * Add negate and div operation
+    * **Exercise 5.7A:**
+        > In order to write the negate-polynomial, we need to build the procedure like this:  
+        map-terms->negate-terms->negate-polynomial
+     
                      
        
         

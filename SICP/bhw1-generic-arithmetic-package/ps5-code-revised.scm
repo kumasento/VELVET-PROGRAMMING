@@ -357,7 +357,8 @@
                                          termlist))))
    (map-terms-iterator proc (reverse L) (the-empty-termlist)))                   
         
-    
+(define (negate-terms term-list)
+  (map-terms (lambda (term) 
 
 ;;; Procedures for Representing Term Lists.
 

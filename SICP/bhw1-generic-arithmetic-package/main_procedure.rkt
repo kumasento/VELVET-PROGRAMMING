@@ -96,4 +96,10 @@ py3
 py4
 (define p3xy (create-polynomial 'x (list py1 (create-number 0) py2 py3 py4)))
 p3xy
+
+;Exercise 5.6B
 (square p3xy)
+
+
+
+
