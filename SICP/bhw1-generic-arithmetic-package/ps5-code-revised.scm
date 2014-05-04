@@ -212,6 +212,9 @@
 ;;;   RepPoly --> Bool
 (define (=zero-polynomial? p) (=zero-poly? p))
 
+;;;   RepPoly --> Bool
+(define (equ-polynomial? p1 p2)
+  (equ-poly? p1 p2))
 
 ;;;   RepPoly --> ({polynomial} X RepPoly)
 (define (make-polynomial poly)
@@ -222,8 +225,9 @@
 
 (put 'add '(polynomial polynomial) +polynomial)
 (put 'mul '(polynomial polynomial) *polynomial)
-
+(put 'equ? '(polynomial polynomial) equ-polynomial?)
 (put '=zero? '(polynomial) =zero-polynomial?)
+(put 'negate '(polynomial) negate-polynomial)
 
 ;;; Polynomial Package User Interface
 
@@ -281,6 +285,8 @@
 	     (list p1 p2))))
 
 ;;; Need -poly ****
+(define (-poly p1 p2)
+  (+poly p1 (negate-poly p2)))
 
 (define (*poly p1 p2)
   (if (same-variable? (variable p1) (variable p2))
@@ -292,11 +298,17 @@
 
 ;;;   RepPoly --> RepPoly
 ;;; Need negate-poly ****
-
+(define (negate-poly p)
+  (make-poly (variable p)
+             (negate-terms (term-list p))))
 
 ;;;   RepPoly --> Bool
 (define (=zero-poly? p)
   (empty-termlist? (term-list p)))
+
+;;;   RepPoly --> Bool
+(define (equ-poly? p1 p2)
+  (=zero-poly? (-poly p1 p2)))
 
 ;;;   (Variable, RepTerms) --> RepPoly
 (define (make-poly variable term-list)
@@ -311,6 +323,38 @@
 ;;;   (Variable, Variable) --> Bool
 (define (same-variable? v1 v2) (eq? v1 v2))
 
+;;;   (Variable,RepNum) --> RepPoly
+(define (repnum->reppoly var num)
+  (let ((coeffs (list (create-number num))))
+    (make-poly var (dense/coeffs->sparse/terms coeffs))))
+
+(define (NPmethod->PPmethod method)
+  (lambda (num poly)
+    (method 
+     (repnum->reppoly (variable poly) num)
+     poly)))
+(define (PNmethod->PPmethod method)
+  (lambda (poly num)
+    (method 
+     poly
+     (repnum->reppoly (variable poly) num))))
+
+;;; Div:
+(define (poly/num p num)
+  (make-poly (variable p)
+             (map-terms 
+              (lambda (term) (term/num term num))
+              (term-list p))))
+
+(put 'add '(number polynomial) (NPmethod->PPmethod +poly))
+(put 'sub '(number polynomial) (NPmethod->PPmethod -poly))
+(put 'mul '(number polynomial) (NPmethod->PPmethod *poly))
+(put 'equ? '(number polynomial) (NPmethod->PPmethod equ-poly?))
+(put 'add '(polynomial number) (PNmethod->PPmethod +poly))
+(put 'sub '(polynomial number) (PNmethod->PPmethod -poly))
+(put 'mul '(polynomial number) (PNmethod->PPmethod *poly))
+(put 'div '(polynomial number) poly/num)
+(put 'equ? '(polynomial number) (PNmethod->PPmethod equ-poly?))
 ;;; THE TERM LIST ARITHMETIC PACKAGE.
 
 ;;; procedures for dealing with lists of terms in order of 
@@ -356,9 +400,10 @@
                             (adjoin-term (proc (first-term L))
                                          termlist))))
    (map-terms-iterator proc (reverse L) (the-empty-termlist)))                   
-        
+
+;;;    RepTerms --> RepTerms
 (define (negate-terms term-list)
-  (map-terms (lambda (term) 
+  (map-terms negate-term term-list)) 
 
 ;;; Procedures for Representing Term Lists.
 
@@ -405,8 +450,15 @@
   (make-term
    (+ (order t1) (order t2))
    (mul (coeff t1) (coeff t2))))
+(define (negate-term t)
+  (make-term 
+   (order t)
+   (negate (coeff t))))
+(define (term/num term num)
+  (make-term 
+   (order term)
+   (div (coeff term) (create-number num))))
 
-
 ;;;APPLYING POLYNOMIALS
 
 (define (apply-term t gn)

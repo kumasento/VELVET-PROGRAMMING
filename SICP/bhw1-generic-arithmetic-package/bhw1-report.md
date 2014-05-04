@@ -84,10 +84,21 @@
             
 * ###Completing Polynomial Package
     * Add negate and div operation
-    * **Exercise 5.7A:**
-        > In order to write the negate-polynomial, we need to build the procedure like this:  
-        map-terms->negate-terms->negate-polynomial
-     
+    * **Exercise 5.7A:**  
+        In order to write the negate-polynomial, we need to build the procedure like this:  
+        map-terms->negate-terms->negate-polynomial  
+    * **Exercise 5.7B**  
+        equ-polynomial  
+        Just like the hardware implementation, we use the feature:  
+        
+            if (p1 == p2) then (p1-p2 == 0)
+            
+* ###More Operations across Different Types    * In this part, we need to add more datatype coerce operations      * **Exercise 5.8A**:
+        In order to implement the repnum->reppoly, first we need to know how could a generic number become a polynomial:   
+        > 3(generic number) --> 3 X x^0 (polynomial)  
+        Then, the building function is simple.
+                    
+    
                      
        
         

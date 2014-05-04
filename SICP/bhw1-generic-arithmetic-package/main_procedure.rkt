@@ -75,7 +75,7 @@ t1 ;; (2 (number . 2)) ==> (2*X^2)
 (create-polynomial 'x coeffs) 
 (define required-numeric-coeffs (list 1 5 0 -2))
 (define p1 (create-numerical-polynomial 'x required-numeric-coeffs))
-
+(define p2 (create-numerical-polynomial 'x (list 1 2 4)))
 ;Exercise 5.5C
 (define (square polynomial)
   (mul polynomial polynomial))
@@ -100,6 +100,65 @@ p3xy
 ;Exercise 5.6B
 (square p3xy)
 
+;Exercise 5.7A
+;Test procedure 'negate-term'
+(define t1 (make-term 2 (create-number 3)))
+t1
+(negate-term t1)
+;Test 'negate-terms' using the term-list L1
+L1
+(negate-terms L1)
+;Test 'negate-poly'
+(display "***Test 'negate-poly'***\n")
+(define poly1 (make-poly 'x L1))
+(display "poly1:\n")
+poly1
+(display "term-list poly1:\n")
+(term-list poly1)
+(display "negate-poly poly1:\n")
+(negate-poly poly1)
+;Test 'negate-polynomial'
+(display "***Test 'negate-polynomial'***\n")
+(display "polynomial p1\n")
+p1
+(display "negate\n")
+(negate p1)
+
+;Exercise 5.7B
+;Test -poly
+(display "polynomial p1 p2\n")
+p1
+p2
+(display "p1 - p2\n")
+(-poly (contents p1) (contents p2))
+(display "p1 == p2\n")
+(equ? p1 p2)
+(display "p1 == p1\n")
+(equ? p1 p1)
+
+;Exercise 5.7C 
+;Already done in the previous procedures
 
 
+;Exercise 5.8A
+(display "***Test repnum->reppoly***\n")
+(display "The number is 3\n")
+(repnum->reppoly 'x 3)
+(display "The polynomial is\n")
+p1
+;Test all the functions:
+(display "add\n")
+(add (create-number 3) p1)
+(add p1 (create-number 3))
+(display "sub\n")
+(sub (create-number 3) p1)
+(sub p1 (create-number 3))
+(display "mul\n")
+(mul (create-number 3) p1)
+(mul p1 (create-number 3))
+(display "equ?\n")
+(equ? (create-number 3) p1)
+(equ? p1 (create-number 3))
+(display "div\n")
+(div p1 (create-number 3))
 
