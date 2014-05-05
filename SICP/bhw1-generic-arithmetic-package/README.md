@@ -1,4 +1,5 @@
-#Generic Arithmetic Package
+#Generic Arithmetic Package[^1]
+[^1]: Author: 赵睿哲 id: 1200012778 email: <vincentzhaorz@pku.edu.cn>
 ===
 ##Summary and Exercise Answer
 * ###Ordinary Numbers
@@ -68,7 +69,65 @@
         * **5.5A**:  
             >map-term is a procedure that applies it's procedure parameter to every term in the termlist parameter.  
             
-                   
+            Check this procedure in the ps5-code.scm
+       
+        * **5.5B**:
+            >use map-coeffs to wrap the input coeffs list
+        
+        * **5.5C**:
+            >dont understand the meaning of "pretty-printed"  
+        
+        * **5.6A**:
+            >This question focus on the type coercing problem.
+        
+        * **5.6B**:  
+            >Simple
+            
+* ###Completing Polynomial Package
+    * Add negate and div operation
+    * **Exercise 5.7A:**  
+        In order to write the negate-polynomial, we need to build the procedure like this:  
+        map-terms->negate-terms->negate-polynomial  
+    * **Exercise 5.7B**  
+        equ-polynomial  
+        Just like the hardware implementation, we use the feature:  
+        
+            if (p1 == p2) then (p1-p2 == 0)
+            
+* ###More Operations across Different Types    * In this part, we need to add more datatype coerce operations      * **Exercise 5.8A**:
+        In order to implement the repnum->reppoly, first we need to know how could a generic number become a polynomial:   
+        > 3(generic number) --> 3 X x^0 (polynomial)  
+        Then, the building function is simple.
+    * **Exercise 5.8C**:  
+        This question is about multiply a polynomial by a rational number.
+        1. Should we just turn polynomial p into p/1?
+            > If we use p/1, then the multiplication procedure will be  
+            rational X rational, there will be far more operations.   
+            For example:  
+            $${p \over 1} = { a+b+c \over 1} $$  
+            and  
+            \\[{{p \over 1} \times {a \over b}} =
+               {{b \times p + a \times 1} \over b}\\]  
+            So the total operations will be:  
+            \\[ 3 \times 1(3\ mul\ operations) 
+                + 4(1\ add\ operation) 
+                + 3 \times 1(3\ div\ operations) 
+                = 10\\]
+        2. What about coerce the rational number to polynomial?
+            > In the last case, the total operation will be:
+            \\[ 3 \times 1 + 2 \times 1 = 5 \\]
+            
+* ###Polynomial Evaluation    
+    * This part wants us to use the polynomial like a polynomial function:  
+      It's quite simple because we could just use the add operation to finish this task
+        
+            
+            
+            
+            
+                    
+    
+                     
        
         
             

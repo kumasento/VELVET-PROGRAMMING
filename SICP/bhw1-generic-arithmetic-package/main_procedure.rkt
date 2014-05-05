@@ -1,3 +1,4 @@
+
 ;;; put-get -- functions to manage the table
 (load "put-get.scm")
 ;;;types -- apply-generic and type tagging
@@ -162,3 +163,8 @@ p1
 (display "div\n")
 (div p1 (create-number 3))
 
+; Exercise 5.9A
+(define term-to-test (make-term 2 (create-number 2)))
+(apply-term term-to-test (create-number 2))
+(apply-terms (term-list (contents p1)) (create-number 2))
+(apply-polynomial p1 (create-number 2))

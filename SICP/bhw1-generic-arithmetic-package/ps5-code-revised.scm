@@ -465,10 +465,17 @@
   (mul (coeff t)
        (power gn (order t))))
 
+(define (dec x) (- x 1))
 (define (power gn k)
   (if (< k 1)
       (create-number 1)
       (mul gn (power gn (dec k)))))
+
+(define (apply-terms terms gn)
+  (if (empty-termlist? terms)
+      (create-number 0)
+      (add (apply-term (first-term terms) gn)
+           (apply-terms (rest-terms terms) gn))))
 
 (define (apply-polynomial p gn)
   (apply-terms
