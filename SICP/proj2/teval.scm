@@ -1,3 +1,4 @@
+
 ;;;;!!!! fix the bug of NIL needing to be both <boolean> and <list>
 
 
@@ -336,7 +337,6 @@
 ;;; Objects
 ;;; An object is a pointer to its class, 
 ;;; together with the values in its slots
-
 (define (make-standard-instance class slot-values)
   (list 'instance class slot-values))
 
@@ -512,11 +512,12 @@
    ))
 
 ;;; Here is the predicte that tests for a list
+;;; This one is provided by the racket, so I commented it:
+;;; http://docs.racket-lang.org/reference/pairs.html?q=list%3F#%28def._%28%28quote._~23~25kernel%29._list~3f%29%29
 
-(define (list? x)
-  (or (pair? x)
-      (null? x)))
-
+;;;(define (list? x)
+;;;  (or (pair? x)
+;;;      (null? x)))
 
 ;;; See if an object is in one of the built-in classes.
 
@@ -543,6 +544,10 @@
 ;;; The following objects will be installed in the initial environment, with
 ;;; the indicated classes, and bound to the indicated Scheme objects
 
+;;; The racket doesnt contain the true and false
+(define true #t)
+(define false #f)
+
 (define initial-objects
   (list
    (list 'true true)
@@ -550,7 +555,7 @@
    (list 'nil '())))
 
 ;;;This defines the printed representation for various kinds of objects.
-
+(define write-line display)
 (define (print object)
   (cond ((standard-instance? object)
          (write-line
@@ -609,6 +614,7 @@
       (for-each
        (lambda (entry)
          (tool-eval
+          ;;;Here the comma will help the interpreter to treat it as a expression
           `(define-class ,(car entry) <object>)
           initial-env))
        scheme-object-classes)
@@ -642,6 +648,10 @@
 
 ;;;This is to keep the Scheme printer from going into an infinite loop
 ;;;if you try to print a circular data structure, such as an environment
+
+;;; I dont know why these two parameters are set here
+(define *unparser-list-depth-limit* 10)
+(define *unparser-list-breadth-limit* 10)
 (set! *unparser-list-depth-limit* 10)
 (set! *unparser-list-breadth-limit* 10)
 
@@ -873,3 +883,13 @@
 (define (set-binding-value! binding value)
   (set-cdr! binding value))
 
+
+(define (qsort lst cmp)
+  (if (eq? '() lst)
+      '()
+      (append (qsort (filter (lambda (x) (cmp x (car lst))) (cdr lst)) cmp)
+              (list (car lst))
+              (qsort (filter (lambda (x) (not (cmp x (car lst)))) (cdr lst)) cmp))))
+(define sort qsort)
+
+(initialize-tool)

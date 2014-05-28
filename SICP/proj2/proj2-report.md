@@ -32,6 +32,24 @@
             * **make**:
                 This one will be taken care of by the procedure `(make class slots-name-and-values).
                 
+    5. Applying Generic Function:
+        * `apply-generic-function` takes `generic-function` and `arguments` as arguments
+        * First it will extract the applicable method from the methods' list which is suitable for the arguments' classes:  
+            `compute-applicable-methods-using-classes`
+            1. In order to get the most proper method, we will sort it by `method-more-specific`
+            2. We also need to check the classes whether they fit in the method by `method-applies-to-classes`. This method bases on:
+                1. All the classes **supplied** need to be the exact classes or the **subclasses** of the **required** classes.
+                2. There would be no extra classes.
+                3. In order to check the ancestor, we will use the "ancestor-link".
+                
+        * Next when we get the `method`, we will use `tool-apply` upon it:  
+            `(tool-apply (method-procedure (car methods)) arguments)`
+            
+    6. Classes for Scheme Data:  
+        TOOL take the original Scheme object as its object. This would be done by keeping the `scheme-object-classes` set.
+    7. Initial environment and driver loop  
+        At first, the interpreter will bind the `true`, `false` and some initial values.
+                
 
 
 ###Answers to Exercises:
@@ -93,3 +111,21 @@
             * For example, if the quoted one is ``<object>`, then it will return `<object>`.
         * The reason for the `tool-eval`'s appearance, I think, is just to reuse the code. If I don't use `tool-eval`, I could just do `text-of-quotation` to the class, but this is not so general. What's more is that, the `tool-eval` could help us to identify the parameter. If we do `text-of-quotation` to the parameter, without checking out if it's in a quoted form, then it will generate trouble.
         
+* Tutorial Exercise 4: Explain how the generic function dispatch the `say` procedure.  
+    Take the `(say fluffy 37)` as an example:
+    1. Enter the `tool-eval` and explain the `say` as a generic function.
+    2. `tool-apply` will do the generic-functions apply.
+    3. The class of the two arguments are `<cat>` and `<number>`, for all the methods in the `say`'s methods, the sort method will put the `(say <cat> <number>)` to the first place.
+
+* Tutorial Exercise 5:  
+    * First we need to define a generic function `print`
+        
+            (define-generic-function print)
+    * Second, add the method with arguments whose class is `<vector>`:
+    
+            (define-method print ((v1 <vector>))
+               (display (xcor v1))
+               (display " ")
+               (display (ycor v1)))
+               
+    

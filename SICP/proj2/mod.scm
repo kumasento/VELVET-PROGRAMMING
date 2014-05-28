@@ -1,3 +1,6 @@
+(load "teval.scm")
+(require racket)
+
 ;;;;mod:
 
 ;;;; The entire evaluator code for the problem set is contained in the file teval.scm.
