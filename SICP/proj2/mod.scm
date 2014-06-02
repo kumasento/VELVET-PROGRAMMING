@@ -1,5 +1,5 @@
 (load "teval.scm")
-(require racket)
+;;;(require racket)
 
 ;;;;mod:
 
