@@ -153,33 +153,11 @@
 ;;; params-and-classes is a list of elements ((p1 class1) ... (pn classn))
 ;;; Body is the body for a procedure whose parameters are (p1 ... pn) 
 
-;;;(define (eval-define-method exp env)
-;;;  (let ((gf (tool-eval (method-definition-generic-function exp) env)))
-;;;    (if (not (generic-function? gf))
-;;;        (error "Unrecognized generic function -- DEFINE-METHOD >> "
-;;;               (method-definition-generic-function exp))
-;;;        (let ((params (method-definition-parameters exp)))
-;;;          (install-method-in-generic-function
-;;;           gf
-;;;           (map (lambda (p) (paramlist-element-class p env))
-;;;                params)
-;;;           (make-procedure (make-lambda-expression
-;;;                            (map paramlist-element-name params)
-;;;                            (method-definition-body exp))
-;;;                           env))
-;;;          (list 'added 'method 'to 'generic 'function:
-;;;               (generic-function-name gf))))))
-
 (define (eval-define-method exp env)
   (let ((gf (tool-eval (method-definition-generic-function exp) env)))
     (if (not (generic-function? gf))
-        (let ((gf-name 
-               (generic-function-name 
-                (method-definition-generic-function exp))))
-          (tool-eval 
-           '(define-generic-function ,(gf-name))
-           env)
-          (eval-define-method exp env))
+        (error "Unrecognized generic function -- DEFINE-METHOD >> "
+               (method-definition-generic-function exp))
         (let ((params (method-definition-parameters exp)))
           (install-method-in-generic-function
            gf
@@ -190,7 +168,8 @@
                             (method-definition-body exp))
                            env))
           (list 'added 'method 'to 'generic 'function:
-                (generic-function-name gf))))))
+               (generic-function-name gf))))))
+
 
 
 ;;;;Install the method in the generic function:  The method consists
@@ -825,7 +804,6 @@
 
 ;;; ENVIRONMENTS
 
-
 (define (lookup-variable-value var env)
   (let ((b (binding-in-env var env)))
     (if (found-binding? b)
@@ -914,4 +892,4 @@
               (qsort (filter (lambda (x) (not (cmp x (car lst)))) (cdr lst)) cmp))))
 (define sort qsort)
 
-;;(initialize-tool)
+;;;(initialize-tool)
