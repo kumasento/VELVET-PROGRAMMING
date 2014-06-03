@@ -35,7 +35,7 @@
        
 3. 完整代码：
 
-~~~
+    ~~~
 ;; Lab 8
 (define (eval-define-class exp env)
   (let ((superclass (tool-eval (class-definition-superclass exp)
@@ -67,7 +67,7 @@
                  ))
              all-slots)
             )))))
-~~~
+    ~~~
 
 4. 测试用例：
-    ![image](http://)
+    ![image](https://raw.githubusercontent.com/ArthasZRZ/VELVET-PROGRAMMING/master/SICP/proj2/Lab%20Exercise%208.png)

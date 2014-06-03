@@ -113,7 +113,22 @@
 
 ;;(define entry 1)
 ;;`(define-generic-function ,entry)
-(define entry 'size)
-(define name '<cat>)
-`(define-method ,entry ((x ,name)) (get-slot x ',entry))
+
+;; Lab 9:
+;; 1. generic-function-checker:
+(define (generic-function-predicate-checker? exp)
+  (tagged-list? exp 'gf-checker))
+
+(define (gf-checker-gfname exp)
+  (list-ref exp 1))
+
+(define (eval-gfpredicate-checker exp env)
+  (let ((gf-name (gf-checker-gfname exp)))
+    (if (is-generic-function-in-env? gf-name env)
+        (begin
+          (display "passed the definition test\n")
+          )
+        (display "Failed to pass the definition test\n"))
+    'done))
+
 (initialize-tool)

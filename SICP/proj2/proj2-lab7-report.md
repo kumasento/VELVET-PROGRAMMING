@@ -55,6 +55,9 @@
     * 在本次实现中使用的是全局变量，即`driver-loop`传递的`the-global-environment`
     * 优点：之后method添加时使用的都是全局环境，每次寻找对应的gf时也是首先搜索全局环境，这样可以最快的定位。
     * 缺点：暂无，因为在TOOL的实现中，并未出现多环境的情况，即，所有求值和应用过程依赖的只有一个全局环境。
+    
+5. 测试用例：
+    ![image](https://raw.githubusercontent.com/ArthasZRZ/VELVET-PROGRAMMING/master/SICP/proj2/Lab%20Exercise%207.png)
             
              
              

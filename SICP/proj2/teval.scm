@@ -37,6 +37,7 @@
         ((method-definition? exp) (eval-define-method exp env))
         ((class-definition? exp) (eval-define-class exp env))
         ((instance-creation? exp) (eval-make exp env))
+        ((generic-function-predicate-checker? exp) (eval-gfpredicate-checker exp env))
         ((application? exp)
          (tool-apply (tool-eval (operator exp) env)
                      (map (lambda (operand) (tool-eval operand env))
