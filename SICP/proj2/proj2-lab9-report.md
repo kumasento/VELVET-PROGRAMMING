@@ -23,8 +23,8 @@
               'hello-world)
             ;; success if hello-world shows up
             ~~~  
-            执行结果(Img1)：
-            ![image](http://)
+            执行结果(Img1)：  
+            ![image](https://raw.githubusercontent.com/ArthasZRZ/VELVET-PROGRAMMING/master/SICP/proj2/Lab%20Exercise%209%20Img1.png)
         2. 之后添加判断过程即可
 2. 测试`generic-function`是否正确生成， 主要有以下3步:
     1. `generic-function`的判定谓词是否正确，方法：
@@ -43,11 +43,11 @@
         ;; otherwise, it will return #t
         ~~~
         测试结果(Img2)：  
-        ![image](http://)  
+        ![image](https://raw.githubusercontent.com/ArthasZRZ/VELVET-PROGRAMMING/master/SICP/proj2/Lab%20Exercise%209%20Img2.png)  
         
-    2. 添加后的`generic-function`是否可以正确使用：
+    2. 添加后的`generic-function`是否可以正确使用：  
         测试结果(Img3)：
-        ![image](http://)  
+        ![image](http://raw.githubusercontent.com/ArthasZRZ/VELVET-PROGRAMMING/master/SICP/proj2/Lab%20Exercise%209%20Img3.png)  
     
 3. 测试`define-class`是否正确生成`slot-name`对应的`method`:
     1. 测试的几个要点：
@@ -56,5 +56,5 @@
         * `method`对应的参数类型正确，即子类的`slot`生成的过程不能被`superclass`使用
         * `method`的输出正确
     2. 测试结果(Img4)：
-        ![image](http://)
+        ![image](https://raw.githubusercontent.com/ArthasZRZ/VELVET-PROGRAMMING/master/SICP/proj2/Lab%20Exercise%209%20Img4.png)
         
