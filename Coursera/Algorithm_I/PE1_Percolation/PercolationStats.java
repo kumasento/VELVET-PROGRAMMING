@@ -9,7 +9,7 @@ public class PercolationStats {
             throw new java.lang.IllegalArgumentException();
 
         prctArr = new double [T];
-        java.util.Random rdm = new java.util.Random(Integer.MAX_VALUE);
+        java.util.Random rdm = new java.util.Random(System.currentTimeMillis());
         
         for (int i = 0; i < T; i++) {
             Percolation pc = new Percolation(N);

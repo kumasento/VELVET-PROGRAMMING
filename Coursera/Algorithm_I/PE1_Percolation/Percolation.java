@@ -3,7 +3,7 @@ public class Percolation
     private int size;
     private int width;
     private boolean [] isOpenArr;
-    private WeightedQuickUnionUF quickFindUF, quickFindUF2;
+    private WeightedQuickUnionUF quickFindUF;
 
     public Percolation(int N)
     {  
@@ -13,8 +13,7 @@ public class Percolation
         size = N * N;
         isOpenArr = new boolean[size+1];
         // first element is for node top, last element is for node bottom
-        quickFindUF = new WeightedQuickUnionUF(size+1);
-        quickFindUF2 = new WeightedQuickUnionUF(size+2);
+        quickFindUF = new WeightedQuickUnionUF(2*size+2);
 
         for (int i = 0; i <= size; i++)
             isOpenArr[i] = false;
@@ -29,6 +28,12 @@ public class Percolation
 
         return (i - 1) * width + j;
     }
+    private int whitePointIndex(int idx) {
+        return 2*idx-1;
+    }
+    private int blackPointIndex(int idx) {
+        return 2*idx;
+    }
 
 
     public void open(int i, int j)
@@ -39,27 +44,39 @@ public class Percolation
         //Here to union elements
         //When N = 1, i == 1 && i == width
         if (i == 1) {
-            quickFindUF.union(0, idx);
-            quickFindUF2.union(0, idx);
+            quickFindUF.union(0, whitePointIndex(idx));
+            quickFindUF.union(0, blackPointIndex(idx));
         }
         if (i == width)
-            quickFindUF2.union(idx, size+1);
+            quickFindUF.union(whitePointIndex(idx), 2*size+1);
 
-        if (i-1 != 0 && isOpen(i-1, j)) {
-            quickFindUF.union(idx, convertToIndex(i-1, j));
-            quickFindUF2.union(idx, convertToIndex(i-1, j));
+        if (i-1 != 0 
+            && isOpen(i-1, j)) { 
+            quickFindUF.union(whitePointIndex(idx), 
+                              whitePointIndex(convertToIndex(i-1, j)));
+            quickFindUF.union(blackPointIndex(idx), 
+                              blackPointIndex(convertToIndex(i-1, j)));
         }
-        if (j-1 != 0 && isOpen(i, j-1)) {
-            quickFindUF.union(idx, convertToIndex(i, j-1));
-            quickFindUF2.union(idx, convertToIndex(i, j-1));
+        if (j-1 != 0 
+            && isOpen(i, j-1)) { 
+            quickFindUF.union(whitePointIndex(idx), 
+                              whitePointIndex(convertToIndex(i, j-1)));
+            quickFindUF.union(blackPointIndex(idx), 
+                              blackPointIndex(convertToIndex(i, j-1)));
         }
-        if (i != width && isOpen(i+1, j)) {
-            quickFindUF.union(idx, convertToIndex(i+1, j));
-            quickFindUF2.union(idx, convertToIndex(i+1, j));
+        if (i != width 
+            && isOpen(i+1, j)) {
+            quickFindUF.union(whitePointIndex(idx), 
+                              whitePointIndex(convertToIndex(i+1, j)));
+            quickFindUF.union(blackPointIndex(idx), 
+                              blackPointIndex(convertToIndex(i+1, j)));
         }
-        if (j != width && isOpen(i, j+1)) {
-            quickFindUF.union(idx, convertToIndex(i, j+1));
-            quickFindUF2.union(idx, convertToIndex(i, j+1));
+        if (j != width 
+            && isOpen(i, j+1)) {
+            quickFindUF.union(whitePointIndex(idx), 
+                              whitePointIndex(convertToIndex(i, j+1)));
+            quickFindUF.union(blackPointIndex(idx), 
+                              blackPointIndex(convertToIndex(i, j+1)));
         }
     }
 
@@ -70,11 +87,11 @@ public class Percolation
     public boolean isFull(int i, int j)
     {    // is site (row i, column j) full?
         return isOpen(i, j) 
-            && quickFindUF.connected(convertToIndex(i, j), 0);
+            && quickFindUF.connected(blackPointIndex(convertToIndex(i, j)), 0);
     }
     public boolean percolates()
     {           
-        return quickFindUF2.connected(size+1, 0);
+        return quickFindUF.connected(2*size+1, 0);
     }
 
     public static void main(String [] args) {
