@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Compiled Object files
 *.slo
 *.lo
@@ -14,11 +15,35 @@
 *.la
 *.a
 *.lib
+=======
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+>>>>>>> 2b3df42db385d6209463470aa7f4191d1d29b0f7
 
 # Executables
 *.exe
 *.out
 *.app
+<<<<<<< HEAD
 
 # The "build" and "bundle" directories are used when creating installers
 # # via the `server', `client', and/or `farm' maefile targets.
@@ -43,3 +68,8 @@ compiled/
 .DS_Store
 *.bak
 TAGS
+=======
+*.i*86
+*.x86_64
+*.hex
+>>>>>>> 2b3df42db385d6209463470aa7f4191d1d29b0f7
