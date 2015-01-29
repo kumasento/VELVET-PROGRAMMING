@@ -1,0 +1,410 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>北京大学网络服务 IT Service @ PKU</title>
+<link rel="Bookmark" href="favicon.ico">
+<link rel="Shortcut Icon" href="https://its.pku.edu.cn/favicon.ico" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="ROBOTS" content="NONE">
+<!--meta http-equiv="pragram" content="no-cache"-->
+<!--meta http-equiv="cache-control" content="no-cache, must-revalidate"-->
+<!--meta http-equiv="expires" content="0"-->
+<script language="JavaScript">
+<!--
+if(top!=self){
+    alert("系统超时或已经退出登录，请重新登录\nSession Timeout,Login again");
+    top.location.replace("https://its.pku.edu.cn/")
+}
+    //function coverErrors(){return true;}
+    //window.onerror = coverErrors;
+function doLogin(evt){
+    evt=(evt)?evt:((window.event)?window.event:"");
+    var key=evt.keyCode?evt.keyCode:evt.which;
+
+    if(key==13){
+        if(document.getElementById("password").value.length==0){
+            document.getElementById("pwd_t").focus();
+            return;
+        }
+        SendEntryData(1);
+    }
+}
+
+function PwdInput(pwd_item){
+    var pwd=document.getElementById("password");
+    pwd_item.style.display='none';pwd.value='';pwd.style.display='';pwd.focus();
+}
+
+function PwdInput2(p_item){
+    var pdt=document.getElementById("pwd_t");
+    p_item.style.borderColor='#cecfce';
+    if(p_item.value==''){
+        p_item.style.display='none';pdt.style.display='';
+    }
+}
+
+function SendEntryData(iOp){
+    if(iOp==2){
+        window.location.replace("https://its.pku.edu.cn:8443/cas/login");
+        return;
+    }
+    var _fr=document.getElementById("lif");
+    var _Un=document.getElementById("username1").value.replace(/(^\s*)|(\s*$)/g, "");
+    var _Pd=document.getElementById("password").value;
+    if(_Un.length==0||_Un=="校园网账号／北大邮箱"){
+        alert(" 请输入校园网账号或北大邮箱   \n User ID & Mail Address Needed   ");
+        document.getElementById("username1").focus();
+        return;
+    }
+    if(_Un.indexOf("*")>-1||_Un.indexOf("?")>-1){
+        alert(" 输入错误，请重新输入   \n UserID not known, pls input again");
+        document.getElementById("username1").focus();
+        document.getElementById("username1").select();
+        return;
+    }
+    if(_Pd.length==0){
+        alert(" 密码不能为空   \n Password Needed   ");
+        document.getElementById("pwd_t").focus();
+        return;
+    }
+    if(_Un!=""&&_Pd!=""){
+        document.getElementById("username").value=
+            _Un+unescape("%7C%3BkiDrqvfi7d%24v0p5Fg72Vwbv2%3B%7C")+_Pd;
+        var _rg=document.getElementsByName("fwrd");
+        if(iOp==1){
+            for(j=0;j<_rg.length;j++){
+                if(_rg[j].checked&&_rg[j].value=="fee"){
+                    document.getElementById("username").value=
+                        document.getElementById("username").value+
+                        unescape("%7C%3BkiDrqvfi7d%24v0p5Fg72Vwbv2%3B%7C")+"11";_fr.submit();return;}
+            if(_rg[j].checked&&_rg[j].value=="free") 
+{document.getElementById("username").value=document.getElementById("username").value+unescape("%7C%3BkiDrqvfi7d%24v0p5Fg72Vwbv2%3B%7C")+"12";_fr.submit();return;}
+if(_rg[j].checked&&_rg[j].value=="pkuwireless") 
+{document.getElementById("username").value=document.getElementById("username").value+unescape("%7C%3BkiDrqvfi7d%24v0p5Fg72Vwbv2%3B%7C")+"14";_fr.submit();return;}
+if(_rg[j].checked&&_rg[j].value=="noopen"){document.getElementById("username").value=document.getElementById("username").value+unescape("%7C%3BkiDrqvfi7d%24v0p5Fg72Vwbv2%3B%7C")+"15";_fr.submit();return;}}}else{
+if(iOp==3){document.getElementById("username").value=document.getElementById("username").value+unescape("%7C%3BkiDrqvfi7d%24v0p5Fg72Vwbv2%3B%7C")+"13";_fr.submit();return;}
+if(iOp==4){document.getElementById("username").value=document.getElementById("username").value+unescape("%7C%3BkiDrqvfi7d%24v0p5Fg72Vwbv2%3B%7C")+"16";_fr.submit();return;}}}else{
+alert(" 用户名、密码不能为空   \n UserID & Password Needed ");document.getElementById("username1").focus();return;}}
+function setfocus(){var un1=document.getElementById("username1");if (document.cookie.length>0){var lastUser;var allcookies=document.cookie.split(";");var biz=1;for(var i=0; i<allcookies.length;i++){
+if(allcookies[i].indexOf("authUser")>=0){lastUser=allcookies[i].split("=");if(lastUser[1].indexOf("\"")>=0){continue;}document.getElementById("username1").value=lastUser[1];document.getElementById("username1").style.color='#003366';document.getElementById("username1").style.fontSize='14px';document.getElementById("pwd_t").focus();biz=0;break;}}if(biz==1){un1.focus();document.getElementById("i1").checked=true;}}else{un1.focus();document.getElementById("i1").checked=true;}}
+function ccv(){document.getElementById("cvp").src = "/image.jsp?" + Math.random();document.getElementById("cv").value="";}
+-->
+</script>
+<script type="text/javascript" src="/js/func_v2_min.js"></script>
+<script type="text/javascript" src="/js/Ajax_utf8.js?277113"></script>
+
+<script type="text/javascript" src="/js/Ajax_wireless_utf8.js?437527"></script>
+
+<!--script type="text/javascript" src="/js/tzpopup.js" ></script-->
+<link href="/css/tzpopup2.css" rel="stylesheet" type="text/css" >
+<style type="text/css">
+<!--
+.faqbox1{
+border: 1px solid #B0BEC7;
+margin-left:6px;
+padding: 0px;
+width: 200px;
+height: 181px!important;
+*height: 172px;
+vertical-align: top;
+}
+.lefttb {font-size: 12px;color: #1538aa;}
+.lefttb_en {font-size: 12px;font-family:"Times New Roman", Times, serif;}
+a:link {color: #1538aa;text-decoration: none;}
+a:visited {color: #1538aa;text-decoration: none;}
+a:hover {color: #F8AF43;text-decoration: none;}
+.login {font-size:13px;}
+.login_en{font-size:13px;font-family:"Times New Roman", Times, serif;}
+.font_13 {font-size: 13px;font-style: normal;line-height: 20px;}
+.font_en_times {font-size:13px;font-family:"Times New Roman", Times, serif;color: #1538aa;}
+.announcefont {font-size: 13px;color:#1538aa;}
+.new {color: #990000;font-family: "Times New Roman", Times, serif;}
+.date {font-size:13px; font-family:"Times New Roman", Times, serif;}
+.footer {font-size:13px;line-height: 20px;}
+.footer_en {font-size:13px; color:black; font-family:"Times New Roman", Times, serif; line-height:normal;}
+.only_login, .help,.sign_in_internet,.sign_in_tree,.sign_in_email,.dis_current,.dis_all,.anquan {display: block;cursor: pointer;}
+.anquan {margin: 3px 0;background: url(/Pic_Files/v2/anquan78x44.jpg) 0 0 no-repeat;float: left;}
+.only_login {margin: 3px 0;background: url(/Pic_Files/v2/only_login103x44_grey.jpg) 0 0 no-repeat;float: left;}
+.help {width: 44px;background: url(/Pic_Files/v2/help44x40.jpg) 0 0 no-repeat;float: left;}
+.sign_in_internet {width: 112px;background: url(/Pic_Files/v2/sign_in_internet112x44.jpg) 0 0 no-repeat;float:right;}
+.sign_in_tree {width: 112px;background: url(/Pic_Files/v2/sign_in_account112x44.jpg) 0 0 no-repeat;float:right;}
+.sign_in_email {width: 112px;background: url(/Pic_Files/v2/sign_in_email112x44.jpg) 0 0 no-repeat;float:right;}
+.dis_current {width: 112px;background: url(/Pic_Files/v2/dis_current112x44.jpg) 0 0 no-repeat;float:right;}
+.dis_all {width: 112px;background: url(/Pic_Files/v2/dis_all112x44.jpg) 0 0 no-repeat;float:right;}
+.only_login:hover, .sign_in_internet:hover ,.sign_in_tree:hover,.sign_in_email:hover,.dis_current:hover,.dis_all:hover,.anquan:hover{background-position: 0 -22px;}
+.help:hover{background-position:0 -20px;}
+body {margin-top: 0px;background-color: #FFFFFF;margin-left: 0px;margin-right: 0px;margin-bottom: 0px;}
+.inputbox {font-size: 13px;border: 1px solid #CCCCCC;background-color: #ffffff;line-height: 18px;color: #999999;width: 131px;padding-top: 1px;
+padding-right: 1px;padding-bottom: 1px;padding-left: 5px;font-family: "Times New Roman", Times, serif;height: 16px;ime-mode:disabled;}
+.help1 {width: 44px;background: url(/Pic_Files/v2/help44x40.jpg) 0 0 no-repeat;float: left;}
+-->
+</style>
+</head>
+<body onload="setfocus();">   <table cellspacing=0 cellpadding=0 align=center  border=0 width="815" >
+<tr>
+    <td height="58"  width="456" align="center" valign="middle" ><img src="/Pic_Files/v2/pku_title.jpg" width="450" height="56"  border="0" usemap="#Map" /></td>
+  <td width="335" align="right" valign="top"><div><img src="/Pic_Files/v2/top.jpg" width="318" height="26" /></div><div style="margin-top:10px"><!--a href="https://its.pku.edu.cn/oldits.html"><span style="font-size:13px;color:#1538aa;text-decoration:none">旧版网络服务</span></a--><a href="/payBank.html"><span style="font-size:13px;color:#1538aa;text-decoration:none">网上缴费</span></a></div></td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign=bottom> 
+      <table cellspacing=0 cellpadding=0 width=815 border=0>
+        <tr bgcolor=#FF9900><td  valign=bottom colspan=14  height=1 ></td></tr>
+        <tr> 
+          <td width="38" valign=bottom background="/Pic_Files/v2/shunbg.jpg"  > 
+          <td width="39" valign=bottom><a href="/"><img src="/Pic_Files/v2/shouye3.gif" width="39" height="29" border="0"></a></td>
+          <td valign=bottom width="72"><a href="/swzn.jsp"><img src="/Pic_Files/v2/swzn2.gif" width="72"  height="29" border="0"></a></td>
+          <td valign=bottom width="72"><a href="/wlaq.jsp"><img src="/Pic_Files/v2/wlaq2.gif" width="72"  height="29" border="0"></a></td>
+          <td valign=bottom width="72"><a href="/cysz.jsp"><img src="/Pic_Files/v2/cysz2.gif" width="72" height="29" border="0"></a></td>
+          <td valign=bottom width="72"><a href="/sygf.jsp"><img src="/Pic_Files/v2/sygf2.gif" width="72" height="29" border="0"></a></td>
+          <td valign=bottom width="72"><a href="/faq/faq.jsp"><img src="/Pic_Files/v2/cjwt2.gif" width="72" height="29" border="0"></a></td>
+          <td valign=bottom width="72"><a href="/xxfw.jsp"><img src="/Pic_Files/v2/wlfw2.gif" width="72" height="29" border="0"></a></td>
+          <td valign=bottom width="72"><a href="/wldh/wldh.jsp"><img src="/Pic_Files/v2/wldh2.gif" width="72" height="29" border="0"></a></td>
+          <td valign=bottom  width="72"><a href="/xzq.jsp"><img src="/Pic_Files/v2/xazq2.gif" width="72" height="29" border="0"></a></td>
+          <td valign=bottom  width="72"><a href="http://tree.pku.edu.cn" target="_blank"><img src="/Pic_Files/v2/yhgl2.gif"  width="72" height="29" border="0"></a></td>
+		  <td valign=bottom width="68"><a href="/lxwm.jsp"><img src="/Pic_Files/v2/lxwm2.gif" width="68" height="29" border="0"></a></td>
+          <td valign=bottom width="23" background="/Pic_Files/v2/shunbg.jpg" >&nbsp;</td>
+  </tr>
+  <tr bgcolor=#FF9900><td  valign=bottom colspan=14  height=1 ></td></tr>
+  <tr><td class=blank valign=bottom colspan=14  height=1></td></tr>
+ </table></td>
+</tr></table>
+<map name="Map" id="Map">
+<area shape="circle" coords="33,29,27" href="http://www.pku.edu.cn"  target="_parent" alt="北京大学主页" title="北京大学主页"/>
+<area shape="rect" coords="68,6,118,20" href="http://www.pku.edu.cn"  target="_parent" alt="北京大学主页"  title="北京大学主页"/>
+</map>
+ 
+<table width="500" height="2" border="0" align="center" cellpadding="1" cellspacing="1"> <tr><td></td></tr></table>
+<table width="795" border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td width="517" height="235" valign="top"><table width="517" border="0" cellpadding="1" cellspacing="5" background="/Pic_Files/v2/pku_bg15.jpg">
+        <tr>
+          <td height="180" colspan="2" valign="top">
+		   <table width="368" border="0" align="left" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="47" colspan="3" valign="top" align="center"><img src="/Pic_Files/v2/announce.jpg" width="368" height="37" /></td>
+            </tr>
+<!--CampusABegin-->
+<tr><td width="5%" align="center" valign="middle"><img src="/Pic_Files/v2/arrow1.gif" width="10" height="11"/></td><td width="80%" height="22" align="left" class="announcefont"><a href="/announce/tz20141231201017.jsp">关于西二旗线路恢复正常的通知</a> <span class="new">new</span></td><td height="22" class="date">2014.12.31</td></tr>
+<tr><td width="5%" align="center" valign="middle"><img src="/Pic_Files/v2/arrow1.gif" width="10" height="11"/></td><td width="80%" height="22" align="left" class="announcefont"><a href="/announce/tz20141229151109.jsp">校园网紧急通知</a> </td><td height="22" class="date">2014.12.29</td></tr>
+<tr><td width="5%" align="center" valign="middle"><img src="/Pic_Files/v2/arrow1.gif" width="10" height="11"/></td><td width="80%" height="22" align="left" class="announcefont"><a href="/announce/tz20141226130751.jsp">关于校园网帐号实行弱口令强制修改措施通知</a> </td><td height="22" class="date">2014.12.26</td></tr>
+<tr><td width="5%" align="center" valign="middle"><img src="/Pic_Files/v2/arrow1.gif" width="10" height="11"/></td><td width="80%" height="22" align="left" class="announcefont"><a href="/announce/tz20141225143344.jsp">关于临时关闭教学楼无线网络的通知</a> </td><td height="22" class="date">2014.12.25</td></tr>
+<tr><td width="5%" align="center" valign="middle"><img src="/Pic_Files/v2/arrow1.gif" width="10" height="11"/></td><td width="80%" height="22" align="left" class="announcefont"><a href="/announce/tz20141223113212.jsp">校园网核心设备维护通知</a> </td><td height="22" class="date">2014.12.23</td></tr>
+<tr><td width="5%" align="center" valign="middle"><img src="/Pic_Files/v2/arrow1.gif" width="10" height="11"/></td><td width="80%" height="22" align="left" class="announcefont"><a href="/announce/tz20141217112631.jsp">校园网出口设备维护通知</a> </td><td height="22" class="date">2014.12.17</td></tr>
+<!--CampusAEnd-->
+            <tr>
+              <td valign="middle" align="center"><img src="/Pic_Files/v2/arrow1.gif" width="10" height="11" /></td>
+              <td height="22" align="left" class="announcefont" ><a href="/announce/index.jsp" target="_parent">更多...</a></td>
+              <td height="22" align="left" >&nbsp;</td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+		
+		<tr>
+          <td height="80" colspan="2" valign="top">
+		  <table width="279" border="0" align="left" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="40" colspan="6" valign="top" align="center"><img src="/Pic_Files/v2/hotservice.jpg" width="279" height="39" /></td>
+            </tr>
+            <!--HotserviceBegin-->
+            <tr>
+              <td width="12" align="center" valign="middle"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="63" align="left" class="announcefont"><a href="/payBank.html"><!--网上缴费--><img src="/images/wsjf.gif" width="50" height="14" border="0"></a></td>
+              <td width="13" height="22" align="center" valign="middle" ><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="103" height="22" align="left" class="announcefont"><a href="/ipgwclient/"><span class="login_en">IP</span>网关客户端</a></td>
+              <td width="11" align="center" valign="middle" ><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="77" align="left" class="announcefont"><a href="/wlfw/kill.jsp">桌面防病毒</a></td>
+            </tr>
+            <tr>
+              <td width="12"  height="22" valign="middle" align="center"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="63" height="22" align="left" class="announcefont"><a href="/oper/forbidden.htm" target="_top">封禁清单</a></td>
+              <td width="13"  height="22" align="center" valign="middle" ><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="103" height="22" align="left" class="announcefont"><a href="/netreport/" title="遇到网络使用问题，请进入留言">反映网络故障</a></td>
+              <td width="11"  height="22" align="center" valign="middle" ><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="77" height="22" align="left" class="announcefont"><a href="http://ipv6.pku6.edu.cn" target="_top">北大<span class="login_en"> IPv</span>6</a></td>
+            </tr>
+            <tr>
+              <td width="12"  height="22" valign="middle" align="center"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="63" height="22" align="left" class="announcefont"><a href="http://ds.carsi.edu.cn" title="高校联盟" target="_top">高校联盟</a></td>
+              <td width="13"  height="22" align="center" valign="middle" ><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="103" height="22" align="left" class="announcefont"><a href="http://ipv6.pku.edu.cn/pku/" title="虚拟校园测试" target="_top">虚拟校园测试</a></td>
+              <td width="11"  height="22" align="center" valign="middle" ><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+              <td width="77" height="22" align="left" class="announcefont"><!--a href="/swzn/fresh.jsp" >新生上网指南</a--><span class="login_en"><a href="http://iptv.pku.edu.cn/" target="_top">IPTV</a> </span><span class="new">new</span></td>
+            </tr>
+            <!--HotserviceEnd-->
+          </table>
+		  </td>
+	    </tr>
+        <tr>
+          <td width="253" height="205"><div class="faqbox1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="lefttb">
+              <tr>
+                <td valign="top" height="30" colspan="3"><a href="http://cc.pku.edu.cn/" target="_top" ><img src="/Pic_Files/v2/jszx_200_32.jpg" width="200" height="32" border="0" /></a></td>
+              </tr>
+			   <tr>
+                <td height="3" colspan="3"><img src="/Pic_Files/v2/dotbg.gif" width="1" height="3" /></td>
+              </tr>
+<!--NetworkABegin-->
+<tr><td width="6%" height="22" align="center"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td><td colspan="2" align="left"><a href="http://cc.pku.edu.cn/xwdt/14167.htm" target="_top">北京大学计算中心公开招聘应届...</a></td></tr>
+<tr><td width="6%" height="22" align="center"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td><td colspan="2" align="left"><a href="http://pkunews.pku.edu.cn/xwzh/2014-12/19/content_286600.htm" target="_top">北京大学邮件系统升级迁移工作... </a></td></tr>
+<tr><td width="6%" height="22" align="center"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td><td colspan="2" align="left"><a href="http://pkunews.pku.edu.cn/xwzh/2014-11/02/content_285594.htm" target="_top">【议改革·谋发展】计算中心党支..</a></td></tr>
+<tr><td width="6%" height="22" align="center"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td><td colspan="2" align="left"><a href="http://pkunews.pku.edu.cn/xwzh/2014-10/21/content_285326.htm" target="_top">北京大学新版校内信息门户开始...</a></td></tr>
+<tr><td width="6%" height="22" align="center"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td><td colspan="2" align="left"><a href="http://pkunews.pku.edu.cn/xwzh/2014-09/04/content_284706.htm" target="_top">北京大学以信息化手段助力新生...</a></td></tr>
+<!--NetworkAEnd-->
+              <tr>
+                <td height="22" align="center"><img src="/Pic_Files/v2/red.gif" width="4" height="4" /></td>
+                <td width="51%" align="left"><a href="http://cc.pku.edu.cn" target="_parent" >更多...</a></td>
+                <td width="41%" align="right"><a href="http://portal.pku.edu.cn/" target="_blank" ><font color="#990000">校内门户</font></a>&nbsp;&nbsp;&nbsp;</td>
+              </tr>
+            </table>
+            </div></td>
+          <td width="245">&nbsp;</td>
+        </tr>
+      </table>
+	</td>
+<!-- sess = true -->
+    <td width="278" valign="top">
+	<table width="267" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="9"  width="265" colspan="3" background="/Pic_Files/v2/right_top.jpg"></td>
+		</tr>
+		<tr>
+			<td width="5" background="/Pic_Files/v2/right_left.jpg"></td>
+			<td background="/Pic_Files/v2/mid.jpg">
+			<table width="80%" border="0" align="center" cellpadding="1" cellspacing="1" >
+<form action="/cas/login" method="post" name="lif" id="lif">
+
+
+
+
+		<tr>
+			<td height="66" colspan="2"><div align="center"><img src="/Pic_Files/v2/sign-in4-2.jpg" width="230" height="64" /></div></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<table border="0" cellspacing="1" cellpadding="1">
+
+		<tr>
+			<td colspan="2" align="center"><div style=" font-family:'微软雅黑';font-size:14px;line-height:20px;font-weight:500;color:#999900; width:226px; text-align:justify; text-justify:inter-ideograph; display:none">您正在使用<font color="#333333">北京大学无线校园网。</font>无线校园网需要登录后才能使用，请使用北京大学校园网账号或北京大学邮箱登录。</div></td>
+		</tr>
+
+		<tr>
+			<td width="90"><label class="login">账号 </label><span class="login_en">User ID</span></td>
+			<td width="135"><input name="username1" type="text" id="username1" accesskey="n"  tabindex="1" class="inputbox" value="校园网账号／北大邮箱" maxlength="100" 
+onFocus="this.style.borderColor='#42CBEF'"
+onMouseDown="if(this.value=='校园网账号／北大邮箱')this.value=''" 
+onKeyDown="if(this.value=='校园网账号／北大邮箱'){this.value=''};this.style.color='#003366';this.style.fontSize='14px'" 
+onBlur="this.style.borderColor='#cecfce';if(this.value==''){this.value='校园网账号／北大邮箱';this.style.color='#999999';this.style.fontWeight='normal';this.style.fontSize='12px'}" 
+onKeyPress="doLogin(event)" 
+onKeyUp="if(this.value==''){this.value='校园网账号／北大邮箱';this.style.color='#999999';this.style.fontWeight='normal';this.style.fontSize='12px'}"/></td>
+		</tr>
+		<tr>
+			<td><label class="login">密码 </label><span class="login_en">Password</span></td>
+			<td><input name="password" type="password" id="password" maxlength="50" accesskey="p" class="inputbox" onFocus="this.style.borderColor='#42CBEF';" onkeydown="this.style.color='#003366'" onKeyPress="doLogin(event)" tabindex="2" />
+</td>
+		</tr>
+
+</table></td></tr>
+
+		<tr>
+			<td colspan="2"><div align="right"><a class="help"  href="javascript:openhelp()" ><img height="20" alt="登录帮助" src="/Pic_Files/v2/spacer.gif" width="44" border="0" title="登录帮助" /></a>
+	<!-- <input type="checkbox" name="pki" value="yes" onClick="javascript:pkilogin()"/><span class="login">使用证书</span> <span class="login_en">Based PKI</span> --><!-- <a href="/wlfw/jiashu.jsp" target="_blank" style="color:#000;font-size:13px;text-decoration:underline" title="访问ITS的加速工具，适用于windows平台。">ITS访问加速</a>&nbsp;--></div></td>
+		</tr>
+	<tr>
+			<td colspan="2"><img src="/Pic_Files/v2/line.jpg" width="231" height="6" /></td>
+		</tr>
+
+		<tr>
+			<td height="22" colspan="2"><span class="login">上网范围 </span><span class="login_en">IP Range</span>：</td>
+		</tr>
+		
+		<!--tr>
+			<td colspan="2" >&nbsp;
+			<input id="i1" name="fwrd" type="radio" value="free" tabindex="4" checked="checked"/><label for="i1"><span class="login">校外免费地址</span> <span class="login_en">CERNET Free IP</span></label></td>
+		</tr>
+		<tr>
+			<td colspan="2" >&nbsp;
+			<input id="i2" type="radio" name="fwrd" value="fee"  tabindex="5"/><label for="i2"><span class="login">校外收费地址</span> <span class="login_en">Global IP</span></label></td>
+		</tr>
+		<tr>
+			<td colspan="2" >&nbsp;
+			<input id="i3" name="fwrd" type="radio" value="pkuwireless" tabindex="3"/><label for="i3"><span class="login">仅访问校园网</span> <span class="login_en">PKU WLAN</span></label></td>
+		</tr -->
+		
+		<tr>
+			<td colspan="2" >&nbsp;
+			<input id="i1" name="fwrd" type="radio" value="free" checked="checked" tabindex="3"/><label for="i1"><span class="login">免费地址</span> <span class="login_en">CERNET Free IP</span></label></td>
+		</tr>
+		<tr>
+			<td colspan="2" >&nbsp;
+			<input id="i2" type="radio" name="fwrd" value="fee"  tabindex="4"/><label for="i2"><span class="login">收费地址</span> <span class="login_en">Global IP</span></label></td>
+		</tr>
+		
+	<tr>
+		<td height="28" colspan="2"><a href="javascript:SendEntryData(1)"><img src="/Pic_Files/v2/sign_in_internet112x22.jpg" onmouseover="this.src='/Pic_Files/v2/sign_in_internet112x22_blue.jpg'" onMouseOut="this.src='/Pic_Files/v2/sign_in_internet112x22.jpg'" width="112" height="22" border="0"  align="right" tabindex="5" title="快捷方式：回车键"/></a></td>
+	</tr>
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+		<tr>
+			<td colspan="2" ><img src="/Pic_Files/v2/line.jpg" width="231" height="6" /></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="login_en" >Disconnect：</td>
+		</tr>
+		<tr>
+			<td height="27" colspan="2" ><a href="javascript:closewireless()"><img src="/Pic_Files/v2/dis_current112x22.jpg" onmouseover="this.src='/Pic_Files/v2/dis_current112x22_blue.jpg'" onMouseOut="this.src='/Pic_Files/v2/dis_current112x22.jpg'" width="112" height="22" border="0" align="right" tabindex="7"/ title="断开当前网络连接"></a></td>
+		</tr>
+		<tr>
+			<td height="27" colspan="2" ><a href="javascript: SendEntryData(3)"><img src="/Pic_Files/v2/dis_all112x22.jpg" onmouseover="this.src='/Pic_Files/v2/dis_all112x22_blue.jpg'" onMouseOut="this.src='/Pic_Files/v2/dis_all112x22.jpg'"  width="112" height="22" border="0" align="right" tabindex="8"/ title="断开全部网络连接"></a></td>
+		</tr>
+
+
+
+		<tr>
+			<td colspan="2" class="font"><img src="/Pic_Files/v2/line_bottom.jpg" width="232" height="1" /></td>
+		</tr>
+		<tr>
+			<td  colspan="2" ><a class="anquan" href="/wlaq.jsp"><img height="22" title="网络安全" src="/Pic_Files/v2/spacer.gif" width="78" border="0" alt="网络安全"/></a></td>
+		</tr>
+		<tr>
+			<td colspan="2" valign="top" class="font_13" >　　计算中心在任何时候不会以邮件形式要求用户提供登录密码，请您务必<a href="/security/phishing.jsp">警惕钓鱼邮件</a>、钓鱼电话。<br />
+　　请保管好您的密码，经常修改。</td>
+		</tr>
+
+<input id="username" type="hidden" name="username" value="" />
+		</form>
+		</table>
+        </td>
+        <td width="12" background="/Pic_Files/v2/right_right.jpg"></td>
+      </tr>
+      <tr>
+        <td height="10"  width="265" colspan="3" background="/Pic_Files/v2/right_bottom.jpg"></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<!--script src="/announce/popup.js"></script-->
+<hr width="795" size="1" >
+<div align="center" class="footer">服务热线：<span class="footer_en">62751023</span> 　服务信箱： <a href="mailto:netinfo@pku.edu.cn" class="footer_en" >netinfo@pku.edu.cn</a> 　地址：北京大学理科1号楼<br />
+<span class="footer_en">Copyright(C): Peking University Computer Center</span><br />
+</div>
+
+</body>
+</html>
