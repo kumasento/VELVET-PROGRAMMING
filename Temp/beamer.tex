@@ -1,0 +1,56 @@
+\documentclass[xetex]{beamer}
+\usetheme{Warsaw}
+
+
+\begin{document}
+	\title[Crisis] % (optional, only for long titles)
+    {The Economics of Financial Crisis}
+    \subtitle{Evidence from India}
+    \author[Author, Anders] % (optional, for multiple authors)
+    {F.~Author\inst{1} \and S.~Anders\inst{2}}
+    \institute[Universities Here and There] % (optional)
+    {
+      \inst{1}%
+      Institute of Computer Science\\
+      University Here
+      \and
+      \inst{2}%
+      Institute of Theoretical Philosophy\\
+      University There
+    }
+    \date[KPT 2004] % (optional)
+    {Conference on Presentation Techniques, 2004}
+    \subject{Computer Science}
+	\frame{\titlepage}
+
+	\section[Section]{My section}
+	\begin{frame}
+        \frametitle{Table of Contents}
+        \tableofcontents
+    \end{frame}
+    \begin{frame}
+    	\frametitle{This is the first slide}
+    	%Content goes here
+    \end{frame}
+    \begin{frame}
+   		\frametitle{This is the second slide}
+    	\framesubtitle{A bit more information about this}
+    	%More content goes here
+    \end{frame}
+    \begin{frame}[allowframebreaks]
+  		\frametitle<presentation>{Further Reading}    
+  	\begin{thebibliography}{10}    
+  	\beamertemplatebookbibitems
+  	\bibitem{Autor1990}
+    	A.~Autor.
+    	\newblock {\em Introduction to Giving Presentations}.
+    	\newblock Klein-Verlag, 1990.
+  	\beamertemplatearticlebibitems
+  	\bibitem{Jemand2000}
+    	S.~Jemand.
+    	\newblock On this and that.
+    	\newblock {\em Journal of This and That}, 2(1):50--100, 2000.
+  	\end{thebibliography}
+	\end{frame}
+% etc
+\end{document}
